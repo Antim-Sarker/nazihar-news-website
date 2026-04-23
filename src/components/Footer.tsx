@@ -1,44 +1,116 @@
 export default function Footer() {
-  const year = new Date().getFullYear()
-
   return (
-    <footer className="mt-20 border-t border-[var(--line)] px-4 pb-14 pt-10 text-[var(--sea-ink-soft)]">
-      <div className="page-wrap flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
-        <p className="m-0 text-sm">
-          &copy; {year} Your name here. All rights reserved.
+    <footer className="bg-white border-t mt-10 text-gray-700">
+
+      {/* Top Section */}
+      <div className="max-w-7xl mx-auto px-4 py-10">
+
+        {/* Brand */}
+        <div className="flex items-center gap-2 mb-6">
+          <div className="w-4 h-4 bg-red-500 rounded-full"></div>
+          <h1 className="text-2xl font-bold text-black">Nazihar News Network</h1>
+        </div>
+
+        {/* Tagline */}
+        <p className="text-sm text-gray-500 mb-8">
+          বাংলাদেশের সর্বাধিক জনপ্রিয় সংবাদমাধ্যম
         </p>
-        <p className="island-kicker m-0">Built with TanStack Start</p>
+
+        {/* Links Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-8 text-sm">
+
+          <div>
+            <h3 className="font-semibold text-black mb-3 border-b pb-1 border-red-500 inline-block">
+              নাগরিক সংবাদ
+            </h3>
+            <ul className="space-y-2">
+              <li>ইপেপার</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-black mb-3 border-b pb-1 border-red-500 inline-block">
+              কিশোর আলো
+            </h3>
+            <ul className="space-y-2">
+              <li>প্রথমা</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-black mb-3 border-b pb-1 border-red-500 inline-block">
+              বিজ্ঞানচিন্তা
+            </h3>
+            <ul className="space-y-2">
+              <li>মোবাইল ভাস</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-black mb-3 border-b pb-1 border-red-500 inline-block">
+              প্রথম আলো ট্রাস্ট
+            </h3>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-black mb-3 border-b pb-1 border-red-500 inline-block">
+              বন্ধুসভা
+            </h3>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-black mb-3 border-b pb-1 border-red-500 inline-block">
+              চিরন্তন ১৯৯১
+            </h3>
+          </div>
+
+        </div>
       </div>
-      <div className="mt-4 flex justify-center gap-4">
-        <a
-          href="https://x.com/tan_stack"
-          target="_blank"
-          rel="noreferrer"
-          className="rounded-xl p-2 text-[var(--sea-ink-soft)] transition hover:bg-[var(--link-bg-hover)] hover:text-[var(--sea-ink)]"
-        >
-          <span className="sr-only">Follow TanStack on X</span>
-          <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32">
-            <path
-              fill="currentColor"
-              d="M12.6 1h2.2L10 6.48 15.64 15h-4.41L7.78 9.82 3.23 15H1l5.14-5.84L.72 1h4.52l3.12 4.73L12.6 1zm-.77 12.67h1.22L4.57 2.26H3.26l8.57 11.41z"
-            />
-          </svg>
-        </a>
-        <a
-          href="https://github.com/TanStack"
-          target="_blank"
-          rel="noreferrer"
-          className="rounded-xl p-2 text-[var(--sea-ink-soft)] transition hover:bg-[var(--link-bg-hover)] hover:text-[var(--sea-ink)]"
-        >
-          <span className="sr-only">Go to TanStack GitHub</span>
-          <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32">
-            <path
-              fill="currentColor"
-              d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
-            />
-          </svg>
-        </a>
+
+      {/* Middle Social Section */}
+      <div className="border-t">
+        <div className="max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center gap-6">
+
+          {/* Social */}
+          <div>
+            <p className="text-sm mb-3">অনুসরণ করুন</p>
+            <div className="flex gap-3 text-white">
+              <div className="w-10 h-10 bg-blue-600 rounded-full"></div>
+              <div className="w-10 h-10 bg-black rounded-full"></div>
+              <div className="w-10 h-10 bg-pink-500 rounded-full"></div>
+              <div className="w-10 h-10 bg-red-500 rounded-full"></div>
+            </div>
+          </div>
+
+          {/* Apps */}
+          <div className="text-right">
+            <p className="text-sm mb-3">মোবাইল অ্যাপ ডাউনলোড করুন</p>
+            <div className="flex gap-3">
+              <div className="w-32 h-10 bg-gray-200 rounded"></div>
+              <div className="w-32 h-10 bg-gray-200 rounded"></div>
+            </div>
+          </div>
+
+        </div>
       </div>
+
+      {/* Bottom Links */}
+      <div className="border-t text-xs text-gray-500 py-4">
+        <div className="max-w-7xl mx-auto px-4 flex flex-wrap gap-4 justify-center">
+          <span>আমাদের সম্পর্কে</span>
+          <span>বিজ্ঞাপন</span>
+          <span>সার্কুলেশন</span>
+          <span>নীতি ও শর্ত</span>
+          <span>যোগাযোগ</span>
+          <span>নিউজলেটার</span>
+        </div>
+      </div>
+
+      {/* Copyright */}
+      <div className="text-center text-xs text-gray-400 py-4 border-t">
+        Copyright © 2026 · Created by Nazihar News Network · Powered by Nazihar Group
+      </div>
+
     </footer>
   )
 }
