@@ -1,3 +1,5 @@
+import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
+
 export default function Footer() {
   return (
     <footer className="bg-white border-t mt-10 text-gray-700">
@@ -7,7 +9,7 @@ export default function Footer() {
 
         {/* Brand */}
         <div className="flex items-center gap-2 mb-6">
-          <div className="w-4 h-4 bg-red-500 rounded-full"></div>
+          <img src="/nnn-logo.png" alt="NNN Logo" className="w-12 h-14 object-contain" />
           <h1 className="text-2xl font-bold text-black">Nazihar News Network</h1>
         </div>
 
@@ -20,7 +22,7 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-6 gap-8 text-sm">
 
           <div>
-            <h3 className="font-semibold text-black mb-3 border-b pb-1 border-red-500 inline-block">
+            <h3 className="font-semibold text-black mb-3 pb-1 text-black inline-block">
               নাগরিক সংবাদ
             </h3>
             <ul className="space-y-2">
@@ -29,7 +31,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-black mb-3 border-b pb-1 border-red-500 inline-block">
+            <h3 className="font-semibold text-black mb-3 pb-1 text-black inline-block">
               কিশোর আলো
             </h3>
             <ul className="space-y-2">
@@ -38,7 +40,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-black mb-3 border-b pb-1 border-red-500 inline-block">
+            <h3 className="font-semibold text-black mb-3 pb-1 text-black inline-block">
               বিজ্ঞানচিন্তা
             </h3>
             <ul className="space-y-2">
@@ -47,19 +49,19 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-black mb-3 border-b pb-1 border-red-500 inline-block">
+            <h3 className="font-semibold text-black mb-3 pb-1 text-black inline-block">
               প্রথম আলো ট্রাস্ট
             </h3>
           </div>
 
           <div>
-            <h3 className="font-semibold text-black mb-3 border-b pb-1 border-red-500 inline-block">
+            <h3 className="font-semibold text-black mb-3 pb-1 text-black inline-block">
               বন্ধুসভা
             </h3>
           </div>
 
           <div>
-            <h3 className="font-semibold text-black mb-3 border-b pb-1 border-red-500 inline-block">
+            <h3 className="font-semibold text-black mb-3 pb-1 text-black inline-block">
               চিরন্তন ১৯৯১
             </h3>
           </div>
@@ -75,21 +77,47 @@ export default function Footer() {
           <div>
             <p className="text-sm mb-3">অনুসরণ করুন</p>
             <div className="flex gap-3 text-white">
-              <div className="w-10 h-10 bg-blue-600 rounded-full"></div>
-              <div className="w-10 h-10 bg-black rounded-full"></div>
-              <div className="w-10 h-10 bg-pink-500 rounded-full"></div>
-              <div className="w-10 h-10 bg-red-500 rounded-full"></div>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition">
+                <FaFacebookF size={22} />
+              </a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-sky-500 rounded-full flex items-center justify-center hover:bg-sky-600 transition">
+                <FaTwitter size={22} />
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 rounded-full flex items-center justify-center hover:opacity-80 transition">
+                <FaInstagram size={22} />
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition">
+                <FaYoutube size={22} />
+              </a>
             </div>
           </div>
 
           {/* Apps */}
-          <div className="text-right">
-            <p className="text-sm mb-3">মোবাইল অ্যাপ ডাউনলোড করুন</p>
-            <div className="flex gap-3">
-              <div className="w-32 h-10 bg-gray-200 rounded"></div>
-              <div className="w-32 h-10 bg-gray-200 rounded"></div>
-            </div>
-          </div>
+         <div className="flex flex-col items-center gap-4">
+  <p className="text-lg font-medium">মোবাইল অ্যাপ ডাউনলোড করুন</p>
+
+  <div className="flex gap-4">
+    
+    {/* Google Play */}
+    <a href="#">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+        alt="Google Play"
+        className="h-12"
+      />
+    </a>
+
+    {/* App Store */}
+    <a href="#">
+      <img
+        src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+        alt="App Store"
+        className="h-12"
+      />
+    </a>
+
+  </div>
+</div>
 
         </div>
       </div>
