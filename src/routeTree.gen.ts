@@ -9,10 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as NewsRouteImport } from './routes/news'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as NewsPoliticsRouteImport } from './routes/news/politics'
+import { Route as NewsInternationalRouteImport } from './routes/news/international'
+import { Route as NewsEconomyRouteImport } from './routes/news/economy'
 
+const NewsRoute = NewsRouteImport.update({
+  id: '/news',
+  path: '/news',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -24,43 +32,88 @@ const IndexRoute = IndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const NewsPoliticsRoute = NewsPoliticsRouteImport.update({
-  id: '/news/politics',
-  path: '/news/politics',
-  getParentRoute: () => rootRouteImport,
+  id: '/politics',
+  path: '/politics',
+  getParentRoute: () => NewsRoute,
+} as any)
+const NewsInternationalRoute = NewsInternationalRouteImport.update({
+  id: '/international',
+  path: '/international',
+  getParentRoute: () => NewsRoute,
+} as any)
+const NewsEconomyRoute = NewsEconomyRouteImport.update({
+  id: '/economy',
+  path: '/economy',
+  getParentRoute: () => NewsRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/news': typeof NewsRouteWithChildren
+  '/news/economy': typeof NewsEconomyRoute
+  '/news/international': typeof NewsInternationalRoute
   '/news/politics': typeof NewsPoliticsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/news': typeof NewsRouteWithChildren
+  '/news/economy': typeof NewsEconomyRoute
+  '/news/international': typeof NewsInternationalRoute
   '/news/politics': typeof NewsPoliticsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/news': typeof NewsRouteWithChildren
+  '/news/economy': typeof NewsEconomyRoute
+  '/news/international': typeof NewsInternationalRoute
   '/news/politics': typeof NewsPoliticsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/news/politics'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/news'
+    | '/news/economy'
+    | '/news/international'
+    | '/news/politics'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/news/politics'
-  id: '__root__' | '/' | '/about' | '/news/politics'
+  to:
+    | '/'
+    | '/about'
+    | '/news'
+    | '/news/economy'
+    | '/news/international'
+    | '/news/politics'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/news'
+    | '/news/economy'
+    | '/news/international'
+    | '/news/politics'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  NewsPoliticsRoute: typeof NewsPoliticsRoute
+  NewsRoute: typeof NewsRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/news': {
+      id: '/news'
+      path: '/news'
+      fullPath: '/news'
+      preLoaderRoute: typeof NewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -77,18 +130,46 @@ declare module '@tanstack/react-router' {
     }
     '/news/politics': {
       id: '/news/politics'
-      path: '/news/politics'
+      path: '/politics'
       fullPath: '/news/politics'
       preLoaderRoute: typeof NewsPoliticsRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof NewsRoute
+    }
+    '/news/international': {
+      id: '/news/international'
+      path: '/international'
+      fullPath: '/news/international'
+      preLoaderRoute: typeof NewsInternationalRouteImport
+      parentRoute: typeof NewsRoute
+    }
+    '/news/economy': {
+      id: '/news/economy'
+      path: '/economy'
+      fullPath: '/news/economy'
+      preLoaderRoute: typeof NewsEconomyRouteImport
+      parentRoute: typeof NewsRoute
     }
   }
 }
 
+interface NewsRouteChildren {
+  NewsEconomyRoute: typeof NewsEconomyRoute
+  NewsInternationalRoute: typeof NewsInternationalRoute
+  NewsPoliticsRoute: typeof NewsPoliticsRoute
+}
+
+const NewsRouteChildren: NewsRouteChildren = {
+  NewsEconomyRoute: NewsEconomyRoute,
+  NewsInternationalRoute: NewsInternationalRoute,
+  NewsPoliticsRoute: NewsPoliticsRoute,
+}
+
+const NewsRouteWithChildren = NewsRoute._addFileChildren(NewsRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  NewsPoliticsRoute: NewsPoliticsRoute,
+  NewsRoute: NewsRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
