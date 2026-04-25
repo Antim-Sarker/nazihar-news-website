@@ -1,4 +1,18 @@
 import React, { useState } from "react";
+import { Link } from "@tanstack/react-router";
+
+// 🔥 Convert text → URL slug
+const toSlug = (text: string) =>
+  text.toLowerCase().replace(/\s+/g, "-");
+
+// 🔥 Handle special menu names
+const menuToPath = (menu: string) => {
+  const map: Record<string, string> = {
+    "DS+": "ds-plus",
+    "SLOW READS": "slow-reads",
+  };
+  return map[menu] || menu.toLowerCase().replace(/\s+/g, "-");
+};
 
 const menuItems = {
   NEWS: ["Breaking News", "Politics", "International", "National", "Economy", "Technology"],
@@ -13,9 +27,21 @@ const menuItems = {
 };
 
 const trendingItems = [
-  { label: "Top Story", text: "Will India hand over Hasina to Bangladesh?" },
-  { label: "Climate", text: "El Niño may return, rising heat concerns" },
-  { label: "Politics", text: "We still hope reforms will arise from parliament" },
+  { 
+    label: "Top Story", 
+    text: "Will India hand over Hasina to Bangladesh?",
+    img: "/trend1.jpg"
+  },
+  { 
+    label: "Climate", 
+    text: "El Niño may return, rising heat concerns",
+    img: "/trend2.jpg"
+  },
+  { 
+    label: "Politics", 
+    text: "We still hope reforms will arise from parliament",
+    img: "/trend3.jpg"
+  },
 ];
 
 const Header = () => {
@@ -24,20 +50,23 @@ const Header = () => {
   return (
     <header className="border-b bg-white">
 
-      {/* TOP SECTION */}
+      {/* TOP */}
       <div className="max-w-7xl mx-auto flex items-center justify-between px-5 py-3 gap-4">
 
         {/* Logo */}
         <div className="flex items-center gap-3 flex-shrink-0">
           <img src="/nnn-logo.png" alt="NNN Logo" className="w-36 h-24 object-contain" />
-          
         </div>
 
-        {/* Trending News */}
+        {/* Trending */}
         <div className="hidden lg:flex items-stretch gap-0 flex-1 justify-end">
           {trendingItems.map((item, i) => (
             <div key={i} className={`flex items-center gap-3 px-5 max-w-[220px] ${i > 0 ? "border-l" : ""}`}>
-              <div className="w-14 h-10 bg-gray-100 rounded flex-shrink-0" />
+              <img
+  src={item.img || "/placeholder.jpg"}
+  alt=""
+  className="w-14 h-10 object-cover rounded flex-shrink-0"
+/>
               <div>
                 <p className="text-[10px] font-medium text-red-600 uppercase tracking-widest mb-1">
                   {item.label}
@@ -51,7 +80,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* DATE + EDITION */}
+      {/* DATE */}
       <div className="max-w-7xl mx-auto px-5 py-1.5 flex items-center justify-between border-t border-gray-100">
         <span className="text-[11px] tracking-widest text-gray-400">
           THURSDAY, APRIL 24, 2026
@@ -61,14 +90,19 @@ const Header = () => {
         </span>
       </div>
 
-      {/* BREAKING STRIP */}
-      <div className="bg-red-600 px-5 py-1.5 flex items-center gap-3">
+      {/* BREAKING */}
+      <div className="bg-red-600 px-5 py-1.5 flex items-center gap-3 overflow-hidden">
         <span className="text-[10px] text-white font-medium tracking-widest bg-black/20 px-2 py-0.5 rounded-sm flex-shrink-0">
           BREAKING
         </span>
-        <p className="text-xs text-white/90 truncate">
-          Parliament session begins amid calls for electoral reform · Bangladesh trade surplus narrows in Q1 · National cricket team announces squad for upcoming series
-        </p>
+
+        <div className="relative w-full overflow-hidden">
+          <div className="whitespace-nowrap animate-marquee text-xs text-white/90">
+            Parliament session begins amid calls for electoral reform ·
+            Bangladesh trade surplus narrows in Q1 ·
+            National cricket team announces squad ·
+          </div>
+        </div>
       </div>
 
       {/* NAVBAR */}
@@ -82,6 +116,7 @@ const Header = () => {
               onMouseEnter={() => setOpenMenu(menu)}
               onMouseLeave={() => setOpenMenu(null)}
             >
+              {/* MAIN MENU */}
               <button
                 className={`flex items-center gap-1 px-3 py-3 text-[11.5px] font-medium tracking-wide border-b-2 transition-colors whitespace-nowrap
                 ${
@@ -96,37 +131,38 @@ const Header = () => {
                 </svg>
               </button>
 
+              {/* DROPDOWN */}
               {openMenu === menu && (
                 <div className="absolute left-0 top-full bg-white border border-t-2 border-t-red-600 shadow-md min-w-44 z-50">
                   {items.map((item, index) => (
-                    <a
+                    <Link
                       key={index}
-                      href="#"
+                      to={`/${menuToPath(menu)}/${toSlug(item)}`}
                       className="block px-4 py-2.5 text-[12.5px] text-gray-500 border-b border-gray-50 hover:text-red-600 hover:bg-gray-50 hover:pl-5 transition-all"
                     >
                       {item}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               )}
             </div>
           ))}
 
+          {/* RIGHT SIDE */}
           <div className="ml-auto flex items-center border-l border-gray-100">
-            <a href="#" className="px-3 py-3 text-[11.5px] text-gray-400 tracking-wide hover:text-red-600 transition-colors">
+            <Link to="/bangla" className="px-3 py-3 text-[11.5px] text-gray-400 hover:text-red-600">
               বাংলা
-            </a>
-            <a href="#" className="px-3 py-3 text-[11.5px] text-gray-400 tracking-wide hover:text-red-600 transition-colors">
+            </Link>
+            <Link to="/epaper" className="px-3 py-3 text-[11.5px] text-gray-400 hover:text-red-600">
               E-PAPER
-            </a>
-            <a href="#" className="px-3 py-3 text-[11.5px] font-medium text-red-600 tracking-wide border-l border-gray-100">
+            </Link>
+            <Link to="/today" className="px-3 py-3 text-[11.5px] font-medium text-red-600 border-l">
               TODAY'S NEWS
-            </a>
+            </Link>
           </div>
 
         </div>
       </nav>
-
     </header>
   );
 };

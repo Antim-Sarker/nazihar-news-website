@@ -4,123 +4,141 @@ export default function Footer() {
   return (
     <footer className="bg-white border-t mt-10 text-gray-700">
 
-      {/* Top Section */}
+      {/* Top Section */}  
       <div className="max-w-7xl mx-auto px-4 py-10">
 
-        {/* Brand */}
-        <div className="flex items-center gap-2 mb-6">
-          <img src="/nnn-logo.png" alt="NNN Logo" className="w-12 h-14 object-contain" />
-          <h1 className="text-2xl font-bold text-black">Nazihar News Network</h1>
-        </div>
+  {/* Brand */}
+  <div className="flex items-center gap-2 mb-6">
+    <img src="/nnn-logo.png" alt="NNN Logo" className="w-12 h-14 object-contain" />
+    <h1 className="text-2xl font-bold text-black uppercase tracking-tight">Nazihar News Network</h1>
+  </div>
 
-        {/* Tagline */}
-        <p className="text-sm text-gray-500 mb-8">
-          বাংলাদেশের সর্বাধিক জনপ্রিয় সংবাদমাধ্যম
-        </p>
+  {/* Tagline */}
+  <p className="text-sm text-gray-500 mb-8">
+    The nation's most trusted and popular news source
+  </p>
 
-        {/* Links Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-8 text-sm">
+  {/* Links Grid */}
+  <div className="grid grid-cols-2 md:grid-cols-6 gap-8 text-sm">
 
-          <div>
-            <h3 className="font-semibold text-black mb-3 pb-1 text-black inline-block">
-              নাগরিক সংবাদ
-            </h3>
-            <ul className="space-y-2">
-              <li>ইপেপার</li>
-            </ul>
-          </div>
+    <div>
+      <h3 className="font-semibold text-black mb-3 border-b border-transparent">
+        Citizen News
+      </h3>
+      <ul className="space-y-2 text-gray-600">
+        <li className="hover:text-black cursor-pointer">E-Paper</li>
+        <li className="hover:text-black cursor-pointer">Live TV</li>
+      </ul>
+    </div>
 
-          <div>
-            <h3 className="font-semibold text-black mb-3 pb-1 text-black inline-block">
-              কিশোর আলো
-            </h3>
-            <ul className="space-y-2">
-              <li>প্রথমা</li>
-            </ul>
-          </div>
+    <div>
+      <h3 className="font-semibold text-black mb-3">
+        Youth & Lifestyle
+      </h3>
+      <ul className="space-y-2 text-gray-600">
+        <li className="hover:text-black cursor-pointer">Prothoma</li>
+        <li className="hover:text-black cursor-pointer">Kishor Alo</li>
+      </ul>
+    </div>
 
-          <div>
-            <h3 className="font-semibold text-black mb-3 pb-1 text-black inline-block">
-              বিজ্ঞানচিন্তা
-            </h3>
-            <ul className="space-y-2">
-              <li>মোবাইল ভাস</li>
-            </ul>
-          </div>
+    <div>
+      <h3 className="font-semibold text-black mb-3">
+        Science & Tech
+      </h3>
+      <ul className="space-y-2 text-gray-600">
+        <li className="hover:text-black cursor-pointer">Science Thought</li>
+        <li className="hover:text-black cursor-pointer">Mobile Vas</li>
+      </ul>
+    </div>
 
-          <div>
-            <h3 className="font-semibold text-black mb-3 pb-1 text-black inline-block">
-              প্রথম আলো ট্রাস্ট
-            </h3>
-          </div>
+    <div>
+      <h3 className="font-semibold text-black mb-3">
+        NNN Trust
+      </h3>
+      <ul className="space-y-2 text-gray-600">
+        <li className="hover:text-black cursor-pointer">Events</li>
+        <li className="hover:text-black cursor-pointer">Donations</li>
+      </ul>
+    </div>
 
-          <div>
-            <h3 className="font-semibold text-black mb-3 pb-1 text-black inline-block">
-              বন্ধুসভা
-            </h3>
-          </div>
+    <div>
+      <h3 className="font-semibold text-black mb-3">
+        Community
+      </h3>
+      <ul className="space-y-2 text-gray-600">
+        <li className="hover:text-black cursor-pointer">Friends Society</li>
+        <li className="hover:text-black cursor-pointer">Forums</li>
+      </ul>
+    </div>
 
-          <div>
-            <h3 className="font-semibold text-black mb-3 pb-1 text-black inline-block">
-              চিরন্তন ১৯৯১
-            </h3>
-          </div>
-
-        </div>
-      </div>
-
-      {/* Middle Social Section */}
-      <div className="border-t">
-        <div className="max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center gap-6">
-
-          {/* Social */}
-          <div>
-            <p className="text-sm mb-3">অনুসরণ করুন</p>
-            <div className="flex gap-3 text-white">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition">
-                <FaFacebookF size={22} />
-              </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-sky-500 rounded-full flex items-center justify-center hover:bg-sky-600 transition">
-                <FaTwitter size={22} />
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 rounded-full flex items-center justify-center hover:opacity-80 transition">
-                <FaInstagram size={22} />
-              </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition">
-                <FaYoutube size={22} />
-              </a>
-            </div>
-          </div>
-
-          {/* Apps */}
-         <div className="flex flex-col items-center gap-4">
-  <p className="text-lg font-medium">মোবাইল অ্যাপ ডাউনলোড করুন</p>
-
-  <div className="flex gap-4">
-    
-    {/* Google Play */}
-    <a href="#">
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-        alt="Google Play"
-        className="h-12"
-      />
-    </a>
-
-    {/* App Store */}
-    <a href="#">
-      <img
-        src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-        alt="App Store"
-        className="h-12"
-      />
-    </a>
+    <div>
+      <h3 className="font-semibold text-black mb-3">
+        Legacy
+      </h3>
+      <ul className="space-y-2 text-gray-600">
+        <li className="hover:text-black cursor-pointer">Eternal 1991</li>
+        <li className="hover:text-black cursor-pointer">Archives</li>
+      </ul>
+    </div>
 
   </div>
 </div>
 
-        </div>
+      {/* Middle Social Section */}
+      <div className="border-t border-gray-100 bg-gray-50/50">
+  <div className="max-w-7xl mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center gap-10">
+
+    {/* Social Media Section */}
+    <div className="flex flex-col items-center md:items-start">
+      <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">Connect with us</p>
+      <div className="flex gap-6">
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"
+          className="text-gray-400 hover:text-[#1877F2] transition-colors duration-300">
+          <FaFacebookF size={20} />
+        </a>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
+          className="text-gray-400 hover:text-black transition-colors duration-300">
+          <FaTwitter size={20} />
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+          className="text-gray-400 hover:text-[#E4405F] transition-colors duration-300">
+          <FaInstagram size={20} />
+        </a>
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer"
+          className="text-gray-400 hover:text-[#CD201F] transition-colors duration-300">
+          <FaYoutube size={22} />
+        </a>
       </div>
+    </div>
+
+    {/* Mobile Apps Section */}
+    <div className="flex flex-col items-center md:items-end">
+      <p className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">Experience our App</p>
+      <div className="flex gap-3">
+        
+        {/* Google Play */}
+        <a href="#" className="hover:opacity-80 transition-opacity">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+            alt="Get it on Google Play"
+            className="h-9 w-auto"
+          />
+        </a>
+
+        {/* App Store */}
+        <a href="#" className="hover:opacity-80 transition-opacity">
+          <img
+            src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+            alt="Download on the App Store"
+            className="h-9 w-auto"
+          />
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+</div>
 
       {/* Bottom Links */}
       <div className="border-t text-xs text-gray-500 py-4">
