@@ -4,34 +4,13 @@ import Sports from '../components/Sports'
 import National from '../components/National'
 import World from '../components/World'
 import Breaking from '../components/Breaking'
+import Business from '../components/Business'
 
 export const Route = createFileRoute('/')({
   component: App,
 })
 
-const businessNews = [
-  {
-    category: 'Markets',
-    title: 'DSEX rises 1.2% as foreign investors return to banking stocks',
-    desc: 'Analysts attribute the rebound to easing inflation data and central bank signals.',
-    time: 'Today, 10:30 AM',
-    img: '/business1.jpg'
-  },
-  {
-    category: 'Real Estate',
-    title: 'Apartment prices in Gulshan stabilise after two years of sharp gains',
-    desc: 'A new supply pipeline and higher mortgage rates are cooling demand in premium zones.',
-    time: 'Today, 9:15 AM',
-    img: '/business2.jpg'
-  },
-  {
-    category: 'Finance',
-    title: 'Bangladesh Bank keeps policy rate unchanged at 8.5% for third straight quarter',
-    desc: 'The central bank cited steady inflation outlook and strong remittance inflows as key factors.',
-    time: 'Yesterday',
-    img: '/business3.jpg'
-  },
-]
+
 
 function SectionLabel({ title }: { title: string }) {
   return (
@@ -44,25 +23,7 @@ function SectionLabel({ title }: { title: string }) {
   )
 }
 
-function NewsCard({ item }: { item: typeof aroundNation[0] }) {
-  return (
-    <div className="p-4 border-r border-gray-100 last:border-r-0">
-      <img
-        src={item.img || "/placeholder.jpg"}
-        alt=""
-        className="w-full h-28 object-cover bg-gray-200 mb-3"
-      />
-      <p className="text-[10px] text-red-600 tracking-widest uppercase mb-1">
-        {item.category}
-      </p>
-      <h3 className="font-serif text-sm font-medium text-gray-900 leading-snug mb-2">
-        {item.title}
-      </h3>
-      <p className="text-xs text-gray-500 leading-relaxed">{item.desc}</p>
-      <p className="text-[11px] text-gray-400 mt-2">{item.time}</p>
-    </div>
-  )
-}
+
 
 function App() {
   return (
@@ -95,11 +56,9 @@ function App() {
           </div>
 
           {/* Business */}
-          <SectionLabel title="Business & Markets" />
-          <div className="grid grid-cols-1 md:grid-cols-3 border bg-white mb-6">
-            {businessNews.map((item, i) => (
-              <NewsCard key={i} item={item} />
-            ))}
+          <SectionLabel title="Business" />
+          <div className="mb-6">
+            <Business />
           </div>
 
           {/* Sports */}
