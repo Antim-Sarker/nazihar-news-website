@@ -1,6 +1,5 @@
-
-import { useEffect, useState } from "react";
-import ReactPlayer from 'react-player';
+import { useEffect, useRef, useState } from "react";
+import ReactPlayer from "react-player";
 
 interface Video {
   id: string;
@@ -14,10 +13,9 @@ const VideoPortal = () => {
   const [videos, setVideos] = useState<Video[]>([]);
   const [activeVideo, setActiveVideo] = useState<Video | null>(null);
   const [loading, setLoading] = useState(true);
-  // Removed unused userHasInteracted state
+  const playerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // ✅ FALLBACK DATA (always works)
     const fallbackVideos: Video[] = [
       {
         id: "ysz5S6PUM-U",
@@ -55,13 +53,11 @@ const VideoPortal = () => {
 
         const data = await res.json();
 
-        if (!data.items || data.items.length === 0) {
+        if (!data.items || data.items.length === 0)
           throw new Error("API empty");
-        }
 
         const formatted: Video[] = data.items.map((item: any) => {
           const videoId = item.guid?.split(":").pop();
-
           return {
             id: videoId,
             title: item.title,
@@ -73,10 +69,8 @@ const VideoPortal = () => {
 
         setVideos(formatted);
         setActiveVideo(formatted[0]);
-      } catch (error) {
+      } catch {
         console.warn("⚠️ Using fallback videos");
-
-        // ✅ fallback if API fails
         setVideos(fallbackVideos);
         setActiveVideo(fallbackVideos[0]);
       } finally {
@@ -89,11 +83,15 @@ const VideoPortal = () => {
 
   const handleVideoSelect = (video: Video) => {
     setActiveVideo(video);
-    // Removed setUserHasInteracted
-    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    if (playerRef.current) {
+      playerRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
   };
 
-  // 🔄 Loading
   if (loading) {
     return (
       <div className="bg-[#0f0f0f] h-100 flex items-center justify-center text-white">
@@ -114,14 +112,16 @@ const VideoPortal = () => {
         </h2>
 
         {/* MAIN SECTION */}
-        <div className="grid lg:grid-cols-3 gap-6 mb-10">
+        <div className="flex flex-col lg:flex-row gap-6 mb-10">
 
           {/* PLAYER */}
-          <div className="lg:col-span-2">
-            <div className="aspect-video bg-black rounded-lg overflow-hidden">
+          <div className="w-full lg:w-[70%]" ref={playerRef}>
+            <div className="w-full aspect-video bg-black rounded-lg overflow-hidden">
               <ReactPlayer
                 src={activeVideo.url}
                 controls
+                width="100%"
+                height="100%"
               />
             </div>
 
@@ -134,7 +134,7 @@ const VideoPortal = () => {
           </div>
 
           {/* SIDEBAR */}
-          <div className="bg-[#161616] rounded-lg overflow-hidden h-105 flex flex-col">
+          <div className="w-full lg:w-[30%] bg-[#161616] rounded-lg overflow-hidden h-[500px] flex flex-col">
             <div className="bg-red-600 px-4 py-2 text-xs font-bold uppercase">
               Up Next
             </div>
@@ -167,9 +167,10 @@ const VideoPortal = () => {
               ))}
             </div>
           </div>
+
         </div>
 
-        {/* GRID */}
+        {/* MORE VIDEOS */}
         <div>
           <h3 className="text-sm text-gray-400 uppercase mb-4">
             More Videos
@@ -189,7 +190,6 @@ const VideoPortal = () => {
                     alt=""
                   />
                 </div>
-
                 <p className="text-xs line-clamp-2 group-hover:text-red-500">
                   {video.title}
                 </p>
