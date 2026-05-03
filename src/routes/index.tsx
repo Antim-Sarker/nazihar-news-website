@@ -6,6 +6,7 @@ import World from '../components/World'
 import Breaking from '../components/Breaking'
 import Business from '../components/Business'
 import Entertainment from '../components/Entertainment'
+import Lifestyle from '#/components/Lifestyle'
 export const Route = createFileRoute('/')({
   component: App,
 })
@@ -70,6 +71,11 @@ function App() {
           <SectionLabel title="Entertainment" />
           <div className="bg-white border p-4 mb-6">
             <Entertainment />
+          </div>
+          {/* Lifestyle */}
+          <SectionLabel title="Lifestyle" />
+          <div className="bg-white border p-4 mb-6">
+            <Lifestyle />
           </div>
 
         </main>
