@@ -13,6 +13,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as NewsIndexRouteImport } from './routes/news/index'
 import { Route as NewsTechnologyRouteImport } from './routes/news/technology'
+import { Route as NewsSportsRouteImport } from './routes/news/sports'
 import { Route as NewsPoliticsRouteImport } from './routes/news/politics'
 import { Route as NewsInternationalRouteImport } from './routes/news/international'
 import { Route as NewsEconomyRouteImport } from './routes/news/economy'
@@ -36,6 +37,11 @@ const NewsIndexRoute = NewsIndexRouteImport.update({
 const NewsTechnologyRoute = NewsTechnologyRouteImport.update({
   id: '/news/technology',
   path: '/news/technology',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsSportsRoute = NewsSportsRouteImport.update({
+  id: '/news/sports',
+  path: '/news/sports',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NewsPoliticsRoute = NewsPoliticsRouteImport.update({
@@ -66,6 +72,7 @@ export interface FileRoutesByFullPath {
   '/news/economy': typeof NewsEconomyRoute
   '/news/international': typeof NewsInternationalRoute
   '/news/politics': typeof NewsPoliticsRoute
+  '/news/sports': typeof NewsSportsRoute
   '/news/technology': typeof NewsTechnologyRoute
   '/news/': typeof NewsIndexRoute
 }
@@ -76,6 +83,7 @@ export interface FileRoutesByTo {
   '/news/economy': typeof NewsEconomyRoute
   '/news/international': typeof NewsInternationalRoute
   '/news/politics': typeof NewsPoliticsRoute
+  '/news/sports': typeof NewsSportsRoute
   '/news/technology': typeof NewsTechnologyRoute
   '/news': typeof NewsIndexRoute
 }
@@ -87,6 +95,7 @@ export interface FileRoutesById {
   '/news/economy': typeof NewsEconomyRoute
   '/news/international': typeof NewsInternationalRoute
   '/news/politics': typeof NewsPoliticsRoute
+  '/news/sports': typeof NewsSportsRoute
   '/news/technology': typeof NewsTechnologyRoute
   '/news/': typeof NewsIndexRoute
 }
@@ -99,6 +108,7 @@ export interface FileRouteTypes {
     | '/news/economy'
     | '/news/international'
     | '/news/politics'
+    | '/news/sports'
     | '/news/technology'
     | '/news/'
   fileRoutesByTo: FileRoutesByTo
@@ -109,6 +119,7 @@ export interface FileRouteTypes {
     | '/news/economy'
     | '/news/international'
     | '/news/politics'
+    | '/news/sports'
     | '/news/technology'
     | '/news'
   id:
@@ -119,6 +130,7 @@ export interface FileRouteTypes {
     | '/news/economy'
     | '/news/international'
     | '/news/politics'
+    | '/news/sports'
     | '/news/technology'
     | '/news/'
   fileRoutesById: FileRoutesById
@@ -130,6 +142,7 @@ export interface RootRouteChildren {
   NewsEconomyRoute: typeof NewsEconomyRoute
   NewsInternationalRoute: typeof NewsInternationalRoute
   NewsPoliticsRoute: typeof NewsPoliticsRoute
+  NewsSportsRoute: typeof NewsSportsRoute
   NewsTechnologyRoute: typeof NewsTechnologyRoute
   NewsIndexRoute: typeof NewsIndexRoute
 }
@@ -162,6 +175,13 @@ declare module '@tanstack/react-router' {
       path: '/news/technology'
       fullPath: '/news/technology'
       preLoaderRoute: typeof NewsTechnologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/news/sports': {
+      id: '/news/sports'
+      path: '/news/sports'
+      fullPath: '/news/sports'
+      preLoaderRoute: typeof NewsSportsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/news/politics': {
@@ -202,6 +222,7 @@ const rootRouteChildren: RootRouteChildren = {
   NewsEconomyRoute: NewsEconomyRoute,
   NewsInternationalRoute: NewsInternationalRoute,
   NewsPoliticsRoute: NewsPoliticsRoute,
+  NewsSportsRoute: NewsSportsRoute,
   NewsTechnologyRoute: NewsTechnologyRoute,
   NewsIndexRoute: NewsIndexRoute,
 }
