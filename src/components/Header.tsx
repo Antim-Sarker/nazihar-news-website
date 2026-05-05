@@ -19,7 +19,7 @@ const menuItems: Record<string, string[]> = {
   OPINION: ["Editorials", "Columns", "Analysis", "Letters", "Commentary"],
   BUSINESS: ["Markets", "Economy", "Companies", "Startups", "Real Estate", "Finance"],
   SPORTS: ["Cricket", "Football", "Tennis", "Badminton", "Olympics", "Other Sports"],
-  LIFESTYLE: ["Fashion", "Health", "Food", "Travel", "Relationships", "Parenting"],
+  LIFESTYLES: ["Fashion", "Health", "Food", "Travel"],
   CULTURE: ["Arts", "Books", "Film", "Music", "Theatre", "Heritage"],
   "SLOW READS": ["Features", "Interviews", "Long-form", "Photo Stories"],
   YOUTH: ["Education", "Career", "Student Life", "Youth Issues"],

@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as NewsIndexRouteImport } from './routes/news/index'
+import { Route as LifestylesIndexRouteImport } from './routes/lifestyles/index'
 import { Route as NewsTechnologyRouteImport } from './routes/news/technology'
 import { Route as NewsSportsRouteImport } from './routes/news/sports'
 import { Route as NewsPoliticsRouteImport } from './routes/news/politics'
@@ -20,6 +21,9 @@ import { Route as NewsInternationalRouteImport } from './routes/news/internation
 import { Route as NewsEconomyRouteImport } from './routes/news/economy'
 import { Route as NewsBreakingNewsRouteImport } from './routes/news/breaking-news'
 import { Route as LifestylesTravelRouteImport } from './routes/lifestyles/travel'
+import { Route as LifestylesHealthRouteImport } from './routes/lifestyles/health'
+import { Route as LifestylesFoodRouteImport } from './routes/lifestyles/food'
+import { Route as LifestylesFashionRouteImport } from './routes/lifestyles/fashion'
 
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
@@ -34,6 +38,11 @@ const IndexRoute = IndexRouteImport.update({
 const NewsIndexRoute = NewsIndexRouteImport.update({
   id: '/news/',
   path: '/news/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LifestylesIndexRoute = LifestylesIndexRouteImport.update({
+  id: '/lifestyles/',
+  path: '/lifestyles/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NewsTechnologyRoute = NewsTechnologyRouteImport.update({
@@ -76,10 +85,28 @@ const LifestylesTravelRoute = LifestylesTravelRouteImport.update({
   path: '/lifestyles/travel',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LifestylesHealthRoute = LifestylesHealthRouteImport.update({
+  id: '/lifestyles/health',
+  path: '/lifestyles/health',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LifestylesFoodRoute = LifestylesFoodRouteImport.update({
+  id: '/lifestyles/food',
+  path: '/lifestyles/food',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LifestylesFashionRoute = LifestylesFashionRouteImport.update({
+  id: '/lifestyles/fashion',
+  path: '/lifestyles/fashion',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/lifestyles/fashion': typeof LifestylesFashionRoute
+  '/lifestyles/food': typeof LifestylesFoodRoute
+  '/lifestyles/health': typeof LifestylesHealthRoute
   '/lifestyles/travel': typeof LifestylesTravelRoute
   '/news/breaking-news': typeof NewsBreakingNewsRoute
   '/news/economy': typeof NewsEconomyRoute
@@ -88,11 +115,15 @@ export interface FileRoutesByFullPath {
   '/news/politics': typeof NewsPoliticsRoute
   '/news/sports': typeof NewsSportsRoute
   '/news/technology': typeof NewsTechnologyRoute
+  '/lifestyles/': typeof LifestylesIndexRoute
   '/news/': typeof NewsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/lifestyles/fashion': typeof LifestylesFashionRoute
+  '/lifestyles/food': typeof LifestylesFoodRoute
+  '/lifestyles/health': typeof LifestylesHealthRoute
   '/lifestyles/travel': typeof LifestylesTravelRoute
   '/news/breaking-news': typeof NewsBreakingNewsRoute
   '/news/economy': typeof NewsEconomyRoute
@@ -101,12 +132,16 @@ export interface FileRoutesByTo {
   '/news/politics': typeof NewsPoliticsRoute
   '/news/sports': typeof NewsSportsRoute
   '/news/technology': typeof NewsTechnologyRoute
+  '/lifestyles': typeof LifestylesIndexRoute
   '/news': typeof NewsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/lifestyles/fashion': typeof LifestylesFashionRoute
+  '/lifestyles/food': typeof LifestylesFoodRoute
+  '/lifestyles/health': typeof LifestylesHealthRoute
   '/lifestyles/travel': typeof LifestylesTravelRoute
   '/news/breaking-news': typeof NewsBreakingNewsRoute
   '/news/economy': typeof NewsEconomyRoute
@@ -115,6 +150,7 @@ export interface FileRoutesById {
   '/news/politics': typeof NewsPoliticsRoute
   '/news/sports': typeof NewsSportsRoute
   '/news/technology': typeof NewsTechnologyRoute
+  '/lifestyles/': typeof LifestylesIndexRoute
   '/news/': typeof NewsIndexRoute
 }
 export interface FileRouteTypes {
@@ -122,6 +158,9 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/lifestyles/fashion'
+    | '/lifestyles/food'
+    | '/lifestyles/health'
     | '/lifestyles/travel'
     | '/news/breaking-news'
     | '/news/economy'
@@ -130,11 +169,15 @@ export interface FileRouteTypes {
     | '/news/politics'
     | '/news/sports'
     | '/news/technology'
+    | '/lifestyles/'
     | '/news/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/lifestyles/fashion'
+    | '/lifestyles/food'
+    | '/lifestyles/health'
     | '/lifestyles/travel'
     | '/news/breaking-news'
     | '/news/economy'
@@ -143,11 +186,15 @@ export interface FileRouteTypes {
     | '/news/politics'
     | '/news/sports'
     | '/news/technology'
+    | '/lifestyles'
     | '/news'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/lifestyles/fashion'
+    | '/lifestyles/food'
+    | '/lifestyles/health'
     | '/lifestyles/travel'
     | '/news/breaking-news'
     | '/news/economy'
@@ -156,12 +203,16 @@ export interface FileRouteTypes {
     | '/news/politics'
     | '/news/sports'
     | '/news/technology'
+    | '/lifestyles/'
     | '/news/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  LifestylesFashionRoute: typeof LifestylesFashionRoute
+  LifestylesFoodRoute: typeof LifestylesFoodRoute
+  LifestylesHealthRoute: typeof LifestylesHealthRoute
   LifestylesTravelRoute: typeof LifestylesTravelRoute
   NewsBreakingNewsRoute: typeof NewsBreakingNewsRoute
   NewsEconomyRoute: typeof NewsEconomyRoute
@@ -170,6 +221,7 @@ export interface RootRouteChildren {
   NewsPoliticsRoute: typeof NewsPoliticsRoute
   NewsSportsRoute: typeof NewsSportsRoute
   NewsTechnologyRoute: typeof NewsTechnologyRoute
+  LifestylesIndexRoute: typeof LifestylesIndexRoute
   NewsIndexRoute: typeof NewsIndexRoute
 }
 
@@ -194,6 +246,13 @@ declare module '@tanstack/react-router' {
       path: '/news'
       fullPath: '/news/'
       preLoaderRoute: typeof NewsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lifestyles/': {
+      id: '/lifestyles/'
+      path: '/lifestyles'
+      fullPath: '/lifestyles/'
+      preLoaderRoute: typeof LifestylesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/news/technology': {
@@ -252,12 +311,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LifestylesTravelRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lifestyles/health': {
+      id: '/lifestyles/health'
+      path: '/lifestyles/health'
+      fullPath: '/lifestyles/health'
+      preLoaderRoute: typeof LifestylesHealthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lifestyles/food': {
+      id: '/lifestyles/food'
+      path: '/lifestyles/food'
+      fullPath: '/lifestyles/food'
+      preLoaderRoute: typeof LifestylesFoodRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lifestyles/fashion': {
+      id: '/lifestyles/fashion'
+      path: '/lifestyles/fashion'
+      fullPath: '/lifestyles/fashion'
+      preLoaderRoute: typeof LifestylesFashionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  LifestylesFashionRoute: LifestylesFashionRoute,
+  LifestylesFoodRoute: LifestylesFoodRoute,
+  LifestylesHealthRoute: LifestylesHealthRoute,
   LifestylesTravelRoute: LifestylesTravelRoute,
   NewsBreakingNewsRoute: NewsBreakingNewsRoute,
   NewsEconomyRoute: NewsEconomyRoute,
@@ -266,6 +349,7 @@ const rootRouteChildren: RootRouteChildren = {
   NewsPoliticsRoute: NewsPoliticsRoute,
   NewsSportsRoute: NewsSportsRoute,
   NewsTechnologyRoute: NewsTechnologyRoute,
+  LifestylesIndexRoute: LifestylesIndexRoute,
   NewsIndexRoute: NewsIndexRoute,
 }
 export const routeTree = rootRouteImport
