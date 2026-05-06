@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { Link } from '@tanstack/react-router'
 import { useEffect, useState } from "react";
 
 export const Route = createFileRoute('/news/breaking-news')({
@@ -38,6 +39,21 @@ function parseProthomAloRSS(xmlString: string) {
 
     return { title, link, desc, pubDate, category, img };
   });
+}
+
+// Helper: builds the search params for the internal article page
+function articleSearch(item: {
+  link: string; title: string; img: string;
+  category: string; pubDate: string; desc: string;
+}) {
+  return {
+    url: item.link,
+    title: item.title,
+    img: item.img,
+    category: item.category,
+    pubDate: item.pubDate,
+    desc: item.desc,
+  }
 }
 
 function SectionLabel({ title }: { title: string }) {
@@ -86,7 +102,6 @@ function PoliticsPage() {
       });
   }, []);
 
-  // First article = featured, next 3 = top stories cards, next 6 = list
   const featured = rssNews[0];
   const topStories = rssNews.slice(1, 4);
   const latestNews = rssNews.slice(4, 10);
@@ -106,14 +121,13 @@ function PoliticsPage() {
         {/* MAIN */}
         <main className="flex-1 space-y-8">
 
-          {/* Featured — first RSS article */}
+          {/* Featured */}
           {rssLoading ? (
             <div className="bg-white border h-72 animate-pulse" />
           ) : featured ? (
-            <a
-              href={featured.link}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/news/article"
+              search={articleSearch(featured)}
               className="block bg-white border hover:opacity-95 transition-opacity"
             >
               {featured.img ? (
@@ -135,10 +149,10 @@ function PoliticsPage() {
                   <p className="text-sm text-gray-500 mt-1 line-clamp-2">{featured.desc}</p>
                 )}
               </div>
-            </a>
+            </Link>
           ) : null}
 
-          {/* Top Stories — next 3 RSS articles */}
+          {/* Top Stories */}
           <div>
             <SectionLabel title="Top Stories" />
             {rssLoading ? (
@@ -150,12 +164,11 @@ function PoliticsPage() {
             ) : (
               <div className="grid grid-cols-3 gap-4">
                 {topStories.map((item, i) => (
-                  <a
+                  <Link
                     key={i}
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-white border hover:opacity-95 transition-opacity"
+                    to="/news/article"
+                    search={articleSearch(item)}
+                    className="block bg-white border hover:opacity-95 transition-opacity"
                   >
                     {item.img ? (
                       <img
@@ -173,15 +186,15 @@ function PoliticsPage() {
                       )}
                       <h3 className="text-sm font-semibold mt-0.5 line-clamp-3">{item.title}</h3>
                     </div>
-                  </a>
+                  </Link>
                 ))}
               </div>
             )}
           </div>
 
-          {/* Latest News list — articles 4-10 */}
+          {/* Latest News list */}
           <div>
-            <SectionLabel title="Latest News " />
+            <SectionLabel title="Latest News" />
             <div className="bg-white border divide-y">
 
               {rssLoading && (
@@ -196,17 +209,19 @@ function PoliticsPage() {
                 <div key={i} className="p-4 hover:bg-gray-50">
                   <div className="flex gap-4">
 
-                    {/* Image */}
-                    {item.img ? (
-                      <img
-                        src={item.img}
-                        alt=""
-                        className="w-28 h-20 object-cover flex-shrink-0 rounded"
-                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
-                      />
-                    ) : (
-                      <div className="w-28 h-20 bg-gray-100 flex-shrink-0 rounded" />
-                    )}
+                    {/* Image — clicking goes to article page */}
+                    <Link to="/news/article" search={articleSearch(item)} className="flex-shrink-0">
+                      {item.img ? (
+                        <img
+                          src={item.img}
+                          alt=""
+                          className="w-28 h-20 object-cover rounded"
+                          onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+                        />
+                      ) : (
+                        <div className="w-28 h-20 bg-gray-100 rounded" />
+                      )}
+                    </Link>
 
                     {/* Text */}
                     <div className="flex-1 min-w-0">
@@ -221,8 +236,12 @@ function PoliticsPage() {
                         </span>
                       </div>
 
-                      {/* Title */}
-                      <h3 className="text-sm font-semibold leading-snug mb-1">{item.title}</h3>
+                      {/* Title — clicking goes to article page */}
+                      <Link to="/news/article" search={articleSearch(item)}>
+                        <h3 className="text-sm font-semibold leading-snug mb-1 hover:text-red-600 transition-colors">
+                          {item.title}
+                        </h3>
+                      </Link>
 
                       {/* Description */}
                       {item.desc && (
@@ -241,14 +260,13 @@ function PoliticsPage() {
                             {expanded[i] ? 'Read less ↑' : 'Read more ↓'}
                           </button>
                         )}
-                        <a
-                          href={item.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        <Link
+                          to="/news/article"
+                          search={articleSearch(item)}
                           className="text-xs text-blue-600 hover:text-blue-700 font-medium"
                         >
                           Full article →
-                        </a>
+                        </Link>
                       </div>
 
                     </div>

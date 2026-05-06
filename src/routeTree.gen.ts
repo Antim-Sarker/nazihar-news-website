@@ -23,11 +23,13 @@ import { Route as NewsNationalRouteImport } from './routes/news/national'
 import { Route as NewsInternationalRouteImport } from './routes/news/international'
 import { Route as NewsEconomyRouteImport } from './routes/news/economy'
 import { Route as NewsBreakingNewsRouteImport } from './routes/news/breaking-news'
+import { Route as NewsArticleRouteImport } from './routes/news/article'
 import { Route as LifestylesTravelRouteImport } from './routes/lifestyles/travel'
 import { Route as LifestylesHealthRouteImport } from './routes/lifestyles/health'
 import { Route as LifestylesFoodRouteImport } from './routes/lifestyles/food'
 import { Route as LifestylesFashionRouteImport } from './routes/lifestyles/fashion'
 import { Route as ApiRssRouteImport } from './routes/api/rss'
+import { Route as ApiArticleRouteImport } from './routes/api/article'
 
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
@@ -99,6 +101,11 @@ const NewsBreakingNewsRoute = NewsBreakingNewsRouteImport.update({
   path: '/news/breaking-news',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NewsArticleRoute = NewsArticleRouteImport.update({
+  id: '/news/article',
+  path: '/news/article',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LifestylesTravelRoute = LifestylesTravelRouteImport.update({
   id: '/lifestyles/travel',
   path: '/lifestyles/travel',
@@ -124,15 +131,22 @@ const ApiRssRoute = ApiRssRouteImport.update({
   path: '/api/rss',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiArticleRoute = ApiArticleRouteImport.update({
+  id: '/api/article',
+  path: '/api/article',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/api/article': typeof ApiArticleRoute
   '/api/rss': typeof ApiRssRoute
   '/lifestyles/fashion': typeof LifestylesFashionRoute
   '/lifestyles/food': typeof LifestylesFoodRoute
   '/lifestyles/health': typeof LifestylesHealthRoute
   '/lifestyles/travel': typeof LifestylesTravelRoute
+  '/news/article': typeof NewsArticleRoute
   '/news/breaking-news': typeof NewsBreakingNewsRoute
   '/news/economy': typeof NewsEconomyRoute
   '/news/international': typeof NewsInternationalRoute
@@ -149,11 +163,13 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/api/article': typeof ApiArticleRoute
   '/api/rss': typeof ApiRssRoute
   '/lifestyles/fashion': typeof LifestylesFashionRoute
   '/lifestyles/food': typeof LifestylesFoodRoute
   '/lifestyles/health': typeof LifestylesHealthRoute
   '/lifestyles/travel': typeof LifestylesTravelRoute
+  '/news/article': typeof NewsArticleRoute
   '/news/breaking-news': typeof NewsBreakingNewsRoute
   '/news/economy': typeof NewsEconomyRoute
   '/news/international': typeof NewsInternationalRoute
@@ -171,11 +187,13 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/api/article': typeof ApiArticleRoute
   '/api/rss': typeof ApiRssRoute
   '/lifestyles/fashion': typeof LifestylesFashionRoute
   '/lifestyles/food': typeof LifestylesFoodRoute
   '/lifestyles/health': typeof LifestylesHealthRoute
   '/lifestyles/travel': typeof LifestylesTravelRoute
+  '/news/article': typeof NewsArticleRoute
   '/news/breaking-news': typeof NewsBreakingNewsRoute
   '/news/economy': typeof NewsEconomyRoute
   '/news/international': typeof NewsInternationalRoute
@@ -194,11 +212,13 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/api/article'
     | '/api/rss'
     | '/lifestyles/fashion'
     | '/lifestyles/food'
     | '/lifestyles/health'
     | '/lifestyles/travel'
+    | '/news/article'
     | '/news/breaking-news'
     | '/news/economy'
     | '/news/international'
@@ -215,11 +235,13 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/api/article'
     | '/api/rss'
     | '/lifestyles/fashion'
     | '/lifestyles/food'
     | '/lifestyles/health'
     | '/lifestyles/travel'
+    | '/news/article'
     | '/news/breaking-news'
     | '/news/economy'
     | '/news/international'
@@ -236,11 +258,13 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/api/article'
     | '/api/rss'
     | '/lifestyles/fashion'
     | '/lifestyles/food'
     | '/lifestyles/health'
     | '/lifestyles/travel'
+    | '/news/article'
     | '/news/breaking-news'
     | '/news/economy'
     | '/news/international'
@@ -258,11 +282,13 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ApiArticleRoute: typeof ApiArticleRoute
   ApiRssRoute: typeof ApiRssRoute
   LifestylesFashionRoute: typeof LifestylesFashionRoute
   LifestylesFoodRoute: typeof LifestylesFoodRoute
   LifestylesHealthRoute: typeof LifestylesHealthRoute
   LifestylesTravelRoute: typeof LifestylesTravelRoute
+  NewsArticleRoute: typeof NewsArticleRoute
   NewsBreakingNewsRoute: typeof NewsBreakingNewsRoute
   NewsEconomyRoute: typeof NewsEconomyRoute
   NewsInternationalRoute: typeof NewsInternationalRoute
@@ -377,6 +403,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NewsBreakingNewsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/news/article': {
+      id: '/news/article'
+      path: '/news/article'
+      fullPath: '/news/article'
+      preLoaderRoute: typeof NewsArticleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lifestyles/travel': {
       id: '/lifestyles/travel'
       path: '/lifestyles/travel'
@@ -412,17 +445,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiRssRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/article': {
+      id: '/api/article'
+      path: '/api/article'
+      fullPath: '/api/article'
+      preLoaderRoute: typeof ApiArticleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ApiArticleRoute: ApiArticleRoute,
   ApiRssRoute: ApiRssRoute,
   LifestylesFashionRoute: LifestylesFashionRoute,
   LifestylesFoodRoute: LifestylesFoodRoute,
   LifestylesHealthRoute: LifestylesHealthRoute,
   LifestylesTravelRoute: LifestylesTravelRoute,
+  NewsArticleRoute: NewsArticleRoute,
   NewsBreakingNewsRoute: NewsBreakingNewsRoute,
   NewsEconomyRoute: NewsEconomyRoute,
   NewsInternationalRoute: NewsInternationalRoute,
