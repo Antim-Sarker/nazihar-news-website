@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 
+/* ─── Types ─────────────────────────────────────────────────────────────── */
+
 interface Article {
   title: string
   link: string
@@ -9,6 +11,8 @@ interface Article {
   category: string
   img: string
 }
+
+/* ─── RSS Parser ─────────────────────────────────────────────────────────── */
 
 function parseRSS(xmlString: string): Article[] {
   const parser = new DOMParser()
@@ -47,6 +51,8 @@ function timeAgo(dateStr: string) {
   return Math.floor(diff / 86400) + " days ago"
 }
 
+/* ─── Styles ─────────────────────────────────────────────────────────────── */
+
 const categoryStyles: Record<string, { badge: string; dot: string }> = {
   National:      { badge: "bg-red-50 text-red-700",       dot: "bg-red-600"    },
   Technology:    { badge: "bg-blue-50 text-blue-700",     dot: "bg-blue-600"   },
@@ -56,6 +62,8 @@ const categoryStyles: Record<string, { badge: string; dot: string }> = {
   Sports:        { badge: "bg-orange-50 text-orange-700", dot: "bg-orange-500" },
   International: { badge: "bg-sky-50 text-sky-700",       dot: "bg-sky-500"    },
 }
+
+/* ─── Sub-components ─────────────────────────────────────────────────────── */
 
 const CategoryBadge = ({ category, light = false }: { category: string; light?: boolean }) => {
   const s = categoryStyles[category] ?? { badge: "bg-gray-100 text-gray-600", dot: "bg-gray-400" }
@@ -92,6 +100,8 @@ const SplashImage = ({ src, alt, className = "" }: { src: string; alt: string; c
   )
 }
 
+/* ─── Skeletons ──────────────────────────────────────────────────────────── */
+
 function HeroSkeleton() {
   return <div className="lg:col-span-3 rounded-2xl bg-gray-200 animate-pulse min-h-[380px]" />
 }
@@ -108,17 +118,20 @@ function SideCardSkeleton() {
   )
 }
 
+/* ─── Main Component ─────────────────────────────────────────────────────── */
+
 export default function AroundTheNation() {
   const [articles, setArticles] = useState<Article[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch("/api/rss?category=national")
+    fetch("/api/rss?category=breaking")
       .then(res => { if (!res.ok) throw new Error(); return res.text() })
       .then(xml => { setArticles(parseRSS(xml)); setLoading(false) })
       .catch(() => setLoading(false))
   }, [])
 
+  // article[0] = hero, [1-2] = side cards, [3-5] = bottom list
   const featured = articles[0]
   const sideCards = articles.slice(1, 3)
   const extraStories = articles.slice(3, 6)
@@ -126,6 +139,7 @@ export default function AroundTheNation() {
   return (
     <section className="py-10 px-4 max-w-7xl mx-auto">
 
+      {/* ── Section header ── */}
       <div className="flex items-center gap-3 mb-7">
         <div className="w-9 h-0.5 bg-red-600 rounded-full flex-shrink-0" />
         <h2
@@ -137,8 +151,10 @@ export default function AroundTheNation() {
         <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700" />
       </div>
 
+      {/* ── Main grid ── */}
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
 
+        {/* ── Hero card ── */}
         {loading || !featured ? (
           <HeroSkeleton />
         ) : (
@@ -169,6 +185,7 @@ export default function AroundTheNation() {
           </Link>
         )}
 
+        {/* ── Side cards ── */}
         <div className="lg:col-span-2 flex flex-col gap-4">
           {loading ? (
             <><SideCardSkeleton /><SideCardSkeleton /></>
@@ -205,6 +222,7 @@ export default function AroundTheNation() {
         </div>
       </div>
 
+      {/* ── Bottom numbered list ── */}
       <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 grid grid-cols-1 sm:grid-cols-3 gap-1">
         {loading ? (
           [0,1,2].map(i => (
