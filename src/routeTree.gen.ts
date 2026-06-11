@@ -14,6 +14,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as OpinionIndexRouteImport } from './routes/opinion/index'
 import { Route as NewsIndexRouteImport } from './routes/news/index'
 import { Route as LifestylesIndexRouteImport } from './routes/lifestyles/index'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 import { Route as OpinionEditorialsRouteImport } from './routes/opinion/editorials'
 import { Route as OpinionAnalysisRouteImport } from './routes/opinion/analysis'
 import { Route as NewsTechnologyRouteImport } from './routes/news/technology'
@@ -28,6 +29,9 @@ import { Route as LifestylesTravelRouteImport } from './routes/lifestyles/travel
 import { Route as LifestylesHealthRouteImport } from './routes/lifestyles/health'
 import { Route as LifestylesFoodRouteImport } from './routes/lifestyles/food'
 import { Route as LifestylesFashionRouteImport } from './routes/lifestyles/fashion'
+import { Route as DashboardEditorsPickcRouteImport } from './routes/dashboard/editors-pickc'
+import { Route as DashboardCreateNewsRouteImport } from './routes/dashboard/create-news'
+import { Route as DashboardAllNewsRouteImport } from './routes/dashboard/all-news'
 import { Route as ApiRssRouteImport } from './routes/api/rss'
 import { Route as ApiArticleRouteImport } from './routes/api/article'
 
@@ -54,6 +58,11 @@ const NewsIndexRoute = NewsIndexRouteImport.update({
 const LifestylesIndexRoute = LifestylesIndexRouteImport.update({
   id: '/lifestyles/',
   path: '/lifestyles/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/dashboard/',
+  path: '/dashboard/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OpinionEditorialsRoute = OpinionEditorialsRouteImport.update({
@@ -126,6 +135,21 @@ const LifestylesFashionRoute = LifestylesFashionRouteImport.update({
   path: '/lifestyles/fashion',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardEditorsPickcRoute = DashboardEditorsPickcRouteImport.update({
+  id: '/dashboard/editors-pickc',
+  path: '/dashboard/editors-pickc',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardCreateNewsRoute = DashboardCreateNewsRouteImport.update({
+  id: '/dashboard/create-news',
+  path: '/dashboard/create-news',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardAllNewsRoute = DashboardAllNewsRouteImport.update({
+  id: '/dashboard/all-news',
+  path: '/dashboard/all-news',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiRssRoute = ApiRssRouteImport.update({
   id: '/api/rss',
   path: '/api/rss',
@@ -142,6 +166,9 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/api/article': typeof ApiArticleRoute
   '/api/rss': typeof ApiRssRoute
+  '/dashboard/all-news': typeof DashboardAllNewsRoute
+  '/dashboard/create-news': typeof DashboardCreateNewsRoute
+  '/dashboard/editors-pickc': typeof DashboardEditorsPickcRoute
   '/lifestyles/fashion': typeof LifestylesFashionRoute
   '/lifestyles/food': typeof LifestylesFoodRoute
   '/lifestyles/health': typeof LifestylesHealthRoute
@@ -156,6 +183,7 @@ export interface FileRoutesByFullPath {
   '/news/technology': typeof NewsTechnologyRoute
   '/opinion/analysis': typeof OpinionAnalysisRoute
   '/opinion/editorials': typeof OpinionEditorialsRoute
+  '/dashboard/': typeof DashboardIndexRoute
   '/lifestyles/': typeof LifestylesIndexRoute
   '/news/': typeof NewsIndexRoute
   '/opinion/': typeof OpinionIndexRoute
@@ -165,6 +193,9 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/api/article': typeof ApiArticleRoute
   '/api/rss': typeof ApiRssRoute
+  '/dashboard/all-news': typeof DashboardAllNewsRoute
+  '/dashboard/create-news': typeof DashboardCreateNewsRoute
+  '/dashboard/editors-pickc': typeof DashboardEditorsPickcRoute
   '/lifestyles/fashion': typeof LifestylesFashionRoute
   '/lifestyles/food': typeof LifestylesFoodRoute
   '/lifestyles/health': typeof LifestylesHealthRoute
@@ -179,6 +210,7 @@ export interface FileRoutesByTo {
   '/news/technology': typeof NewsTechnologyRoute
   '/opinion/analysis': typeof OpinionAnalysisRoute
   '/opinion/editorials': typeof OpinionEditorialsRoute
+  '/dashboard': typeof DashboardIndexRoute
   '/lifestyles': typeof LifestylesIndexRoute
   '/news': typeof NewsIndexRoute
   '/opinion': typeof OpinionIndexRoute
@@ -189,6 +221,9 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/api/article': typeof ApiArticleRoute
   '/api/rss': typeof ApiRssRoute
+  '/dashboard/all-news': typeof DashboardAllNewsRoute
+  '/dashboard/create-news': typeof DashboardCreateNewsRoute
+  '/dashboard/editors-pickc': typeof DashboardEditorsPickcRoute
   '/lifestyles/fashion': typeof LifestylesFashionRoute
   '/lifestyles/food': typeof LifestylesFoodRoute
   '/lifestyles/health': typeof LifestylesHealthRoute
@@ -203,6 +238,7 @@ export interface FileRoutesById {
   '/news/technology': typeof NewsTechnologyRoute
   '/opinion/analysis': typeof OpinionAnalysisRoute
   '/opinion/editorials': typeof OpinionEditorialsRoute
+  '/dashboard/': typeof DashboardIndexRoute
   '/lifestyles/': typeof LifestylesIndexRoute
   '/news/': typeof NewsIndexRoute
   '/opinion/': typeof OpinionIndexRoute
@@ -214,6 +250,9 @@ export interface FileRouteTypes {
     | '/about'
     | '/api/article'
     | '/api/rss'
+    | '/dashboard/all-news'
+    | '/dashboard/create-news'
+    | '/dashboard/editors-pickc'
     | '/lifestyles/fashion'
     | '/lifestyles/food'
     | '/lifestyles/health'
@@ -228,6 +267,7 @@ export interface FileRouteTypes {
     | '/news/technology'
     | '/opinion/analysis'
     | '/opinion/editorials'
+    | '/dashboard/'
     | '/lifestyles/'
     | '/news/'
     | '/opinion/'
@@ -237,6 +277,9 @@ export interface FileRouteTypes {
     | '/about'
     | '/api/article'
     | '/api/rss'
+    | '/dashboard/all-news'
+    | '/dashboard/create-news'
+    | '/dashboard/editors-pickc'
     | '/lifestyles/fashion'
     | '/lifestyles/food'
     | '/lifestyles/health'
@@ -251,6 +294,7 @@ export interface FileRouteTypes {
     | '/news/technology'
     | '/opinion/analysis'
     | '/opinion/editorials'
+    | '/dashboard'
     | '/lifestyles'
     | '/news'
     | '/opinion'
@@ -260,6 +304,9 @@ export interface FileRouteTypes {
     | '/about'
     | '/api/article'
     | '/api/rss'
+    | '/dashboard/all-news'
+    | '/dashboard/create-news'
+    | '/dashboard/editors-pickc'
     | '/lifestyles/fashion'
     | '/lifestyles/food'
     | '/lifestyles/health'
@@ -274,6 +321,7 @@ export interface FileRouteTypes {
     | '/news/technology'
     | '/opinion/analysis'
     | '/opinion/editorials'
+    | '/dashboard/'
     | '/lifestyles/'
     | '/news/'
     | '/opinion/'
@@ -284,6 +332,9 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ApiArticleRoute: typeof ApiArticleRoute
   ApiRssRoute: typeof ApiRssRoute
+  DashboardAllNewsRoute: typeof DashboardAllNewsRoute
+  DashboardCreateNewsRoute: typeof DashboardCreateNewsRoute
+  DashboardEditorsPickcRoute: typeof DashboardEditorsPickcRoute
   LifestylesFashionRoute: typeof LifestylesFashionRoute
   LifestylesFoodRoute: typeof LifestylesFoodRoute
   LifestylesHealthRoute: typeof LifestylesHealthRoute
@@ -298,6 +349,7 @@ export interface RootRouteChildren {
   NewsTechnologyRoute: typeof NewsTechnologyRoute
   OpinionAnalysisRoute: typeof OpinionAnalysisRoute
   OpinionEditorialsRoute: typeof OpinionEditorialsRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
   LifestylesIndexRoute: typeof LifestylesIndexRoute
   NewsIndexRoute: typeof NewsIndexRoute
   OpinionIndexRoute: typeof OpinionIndexRoute
@@ -338,6 +390,13 @@ declare module '@tanstack/react-router' {
       path: '/lifestyles'
       fullPath: '/lifestyles/'
       preLoaderRoute: typeof LifestylesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/dashboard'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/opinion/editorials': {
@@ -438,6 +497,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LifestylesFashionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/editors-pickc': {
+      id: '/dashboard/editors-pickc'
+      path: '/dashboard/editors-pickc'
+      fullPath: '/dashboard/editors-pickc'
+      preLoaderRoute: typeof DashboardEditorsPickcRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/create-news': {
+      id: '/dashboard/create-news'
+      path: '/dashboard/create-news'
+      fullPath: '/dashboard/create-news'
+      preLoaderRoute: typeof DashboardCreateNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/all-news': {
+      id: '/dashboard/all-news'
+      path: '/dashboard/all-news'
+      fullPath: '/dashboard/all-news'
+      preLoaderRoute: typeof DashboardAllNewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/rss': {
       id: '/api/rss'
       path: '/api/rss'
@@ -460,6 +540,9 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ApiArticleRoute: ApiArticleRoute,
   ApiRssRoute: ApiRssRoute,
+  DashboardAllNewsRoute: DashboardAllNewsRoute,
+  DashboardCreateNewsRoute: DashboardCreateNewsRoute,
+  DashboardEditorsPickcRoute: DashboardEditorsPickcRoute,
   LifestylesFashionRoute: LifestylesFashionRoute,
   LifestylesFoodRoute: LifestylesFoodRoute,
   LifestylesHealthRoute: LifestylesHealthRoute,
@@ -474,6 +557,7 @@ const rootRouteChildren: RootRouteChildren = {
   NewsTechnologyRoute: NewsTechnologyRoute,
   OpinionAnalysisRoute: OpinionAnalysisRoute,
   OpinionEditorialsRoute: OpinionEditorialsRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
   LifestylesIndexRoute: LifestylesIndexRoute,
   NewsIndexRoute: NewsIndexRoute,
   OpinionIndexRoute: OpinionIndexRoute,
